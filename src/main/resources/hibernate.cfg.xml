@@ -17,7 +17,7 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <mapping class="ru.job4j.carlazy.Model" />
-        <mapping class="ru.job4j.carlazy.Brand" />
+        <mapping class="ru.job4j.manytomany.model.City" />
+        <mapping class="ru.job4j.manytomany.model.Human" />
     </session-factory>
 </hibernate-configuration>
