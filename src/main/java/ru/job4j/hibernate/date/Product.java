@@ -26,9 +26,6 @@ public class Product {
         return p;
     }
 
-    // getters and setters
-    // equals and hashcode
-
     @Override
     public String toString() {
         return "Product{"
