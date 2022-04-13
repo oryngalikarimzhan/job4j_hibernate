@@ -18,7 +18,8 @@
         <property name="use_sql_comments">true</property>
         <property name="hibernate.jdbc.time_zone">Asia/Dhaka</property>
 
-        <mapping class="ru.job4j.hql.Student" />
         <mapping class="ru.job4j.hql.Candidate" />
+        <mapping class="ru.job4j.hql.VacancyBase" />
+        <mapping class="ru.job4j.hql.Vacancy" />
     </session-factory>
 </hibernate-configuration>

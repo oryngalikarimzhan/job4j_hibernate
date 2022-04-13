@@ -14,34 +14,44 @@ public class HbmRun {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
             session.beginTransaction();
+            /*Vacancy firstVacancy = Vacancy.of(
+                    "senior Java",
+                    "we need senior Java developer",
+                    5000,
+                    "ex@hh.ru",
+                    "87088602830"
+            );
+            Vacancy secondVacancy = Vacancy.of(
+                    "senior Kotlin",
+                    "we need senior Kotlin developer",
+                    5000,
+                    "ex@hh.ru",
+                    "87088602830"
+            );
+            Vacancy thirdVacancy = Vacancy.of(
+                    "senior Java",
+                    "we need senior Java developer",
+                    6000,
+                    "xe@hh.ru",
+                    "87087602830"
+            );
+            session.save(firstVacancy);
+            session.save(secondVacancy);
+            session.save(thirdVacancy);
+            VacancyBase vacancyBase = VacancyBase.of("senior Java");
+            vacancyBase.addVacancy(firstVacancy);
+            vacancyBase.addVacancy(thirdVacancy);
+            Candidate firstCandidate = Candidate.of("Stas", 5, 250000, vacancyBase);
+            session.save(firstCandidate);*/
 
-            Candidate first = Candidate.of("Petr", 10, 300000);
-            Candidate second = Candidate.of("Oryngali", 1, 50000);
-            Candidate third = Candidate.of("Stas", 5, 250000);
-
-            session.save(first);
-            session.save(second);
-            session.save(third);
-
-            session.createQuery("from Candidate").list().forEach(System.out::println);
-
-            System.out.println(session.createQuery("from Candidate where id = :id")
+            System.out.println(session.createQuery("select distinct c from Candidate c "
+                    + "join fetch c.vacancyBase vb "
+                    + "join fetch vb.vacancyList "
+                    + "where c.id = :id", Candidate.class)
                     .setParameter("id", 1)
                     .uniqueResult()
             );
-            System.out.println(session.createQuery("from Candidate where name = :name")
-                    .setParameter("name", "Petr")
-                    .uniqueResult()
-            );
-            session.createQuery(
-                    "update Candidate c set c.salary = :salary, c.experience = :experience where id = :id")
-                    .setParameter("salary", 350000)
-                    .setParameter("experience", 13)
-                    .setParameter("id", 1)
-                    .executeUpdate();
-            session.createQuery("delete from Candidate where id = :id")
-                    .setParameter("id", 3)
-                    .executeUpdate();
+
             session.getTransaction().commit();
             session.close();
         }  catch (Exception e) {
