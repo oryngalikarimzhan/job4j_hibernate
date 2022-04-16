@@ -8,7 +8,31 @@
         <servlet-name>HumanServlet</servlet-name>
         <servlet-class>ru.job4j.manytomany.servlet.HumanServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>ru.job4j.servlets.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>ru.job4j.servlets.UploadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Upload2Servlet</servlet-name>
+        <servlet-class>ru.job4j.servlets.Upload2Servlet</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>Upload2Servlet</servlet-name>
+        <url-pattern>/upload2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/download</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HumanServlet</servlet-name>
         <url-pattern>/humans</url-pattern>
